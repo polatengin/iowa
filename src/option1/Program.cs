@@ -12,8 +12,9 @@ builder.Services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddApiEndpoints();
 
-builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme, options => {
-    options.BearerTokenExpiration = TimeSpan.FromDays(365);
+builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme, options =>
+{
+  options.BearerTokenExpiration = TimeSpan.FromDays(365);
 });
 
 builder.Services.AddAuthorization();
@@ -21,14 +22,16 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => {
-    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme() {
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
+builder.Services.AddSwaggerGen(options =>
+{
+  options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
+  {
+    In = ParameterLocation.Header,
+    Name = "Authorization",
+    Type = SecuritySchemeType.ApiKey
+  });
 
-    options.OperationFilter<SecurityRequirementsOperationFilter>();
+  options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
 var app = builder.Build();
