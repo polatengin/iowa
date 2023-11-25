@@ -14,6 +14,8 @@ builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerSche
     options.BearerTokenExpiration = TimeSpan.FromDays(365);
 });
 
+builder.Services.AddAuthorization();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
