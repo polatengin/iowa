@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("base_1"));
 
+builder.Services.AddIdentityCore<IdentityUser>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddApiEndpoints();
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
