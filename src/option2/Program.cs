@@ -6,6 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("option_2"));
 
+builder.Services.AddResponseCompression(options =>
+{
+  options.EnableForHttps = true;
+});
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
