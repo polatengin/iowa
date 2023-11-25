@@ -41,6 +41,7 @@ app.UseHttpsRedirection();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.MapIdentityApi<IdentityUser>();
 
 app.UseAuthorization();
 
