@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "option1", "option1\option1.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "option2", "option2\option2.csproj", "{36FDB083-7B6F-4F6D-8EF3-4CB6A55B4BAE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "option3", "option3\option3.csproj", "{86F0B1E4-6193-47D7-A0A1-39B2E910DB12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
