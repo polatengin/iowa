@@ -34,6 +34,14 @@ builder.Services.Configure<IdentityOptions>(options =>
   options.User.RequireUniqueEmail = true;
 });
 
+builder.Services.AddAuthorization(options =>
+{
+  options.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
+  options.AddPolicy("RequireDoctor", policy => policy.RequireRole("Doctor"));
+  options.AddPolicy("RequireUser", policy => policy.RequireAuthenticatedUser());
+  options.AddPolicy("RequireITAdmin", policy => policy.RequireRole("Admin").RequireClaim("Department", "IT"));
+});
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
