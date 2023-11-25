@@ -10,6 +10,10 @@ builder.Services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddApiEndpoints();
 
+builder.Services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme, options => {
+    options.BearerTokenExpiration = TimeSpan.FromDays(365);
+});
+
 builder.Services.AddControllers();
 
 var app = builder.Build();
