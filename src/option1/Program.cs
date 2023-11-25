@@ -6,7 +6,7 @@ using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("base_1"));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("option_1"));
 
 builder.Services.AddIdentityCore<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
