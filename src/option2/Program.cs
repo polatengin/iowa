@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,19 @@ builder.Services.AddAuthorization(options =>
   options.AddPolicy("RequireDoctor", policy => policy.RequireRole("Doctor"));
   options.AddPolicy("RequireUser", policy => policy.RequireAuthenticatedUser());
   options.AddPolicy("RequireITAdmin", policy => policy.RequireRole("Admin").RequireClaim("Department", "IT"));
+});
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+  options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
+  {
+    In = ParameterLocation.Header,
+    Name = "Authorization",
+    Type = SecuritySchemeType.ApiKey
+  });
+
+  options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
 var app = builder.Build();
