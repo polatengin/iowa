@@ -66,6 +66,8 @@ app.UseResponseCompression();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseAuthorization();
+
 app.Run();
 
 public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
