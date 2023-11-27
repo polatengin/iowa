@@ -59,7 +59,10 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.UseHttpsRedirection();
+
+app.UseResponseCompression();
+
 
 app.Run();
 
