@@ -63,6 +63,8 @@ app.UseHttpsRedirection();
 
 app.UseResponseCompression();
 
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
 
