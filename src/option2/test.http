@@ -1,0 +1,6 @@
+@option2_BasueUrl = http://localhost:5103
+
+GET {{option2_BasueUrl}}/weather/
+Accept: application/json
+
+###
