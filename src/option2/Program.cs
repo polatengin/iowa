@@ -57,6 +57,8 @@ builder.Services.AddSwaggerGen(options =>
   options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+builder.Services.AddScoped<HttpContextAccessor, HttpContextAccessor>();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
