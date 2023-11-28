@@ -62,6 +62,7 @@ builder.Services.AddScoped<HttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<DatabaseHandler>();
 builder.Services.AddScoped<RegisterHandler>();
+builder.Services.AddScoped<LoginHandler>();
 
 var app = builder.Build();
 
@@ -75,6 +76,9 @@ app.UseSwaggerUI();
 app.UseAuthorization();
 
 app.MapPost("/register", async (RegisterHandler handler) => await handler.HandleAsync());
+
+app.MapPost("/login", async (LoginHandler handler) => await handler.HandleAsync());
+
 app.MapGet("/db", async (DatabaseHandler handler) => await handler.HandleAsync());
 
 
