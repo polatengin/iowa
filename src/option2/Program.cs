@@ -60,6 +60,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<HttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<DatabaseHandler>();
+builder.Services.AddScoped<RegisterHandler>();
 
 var app = builder.Build();
 
@@ -71,6 +72,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseAuthorization();
+
+app.MapPost("/register", async (RegisterHandler handler) => await handler.HandleAsync());
 app.MapGet("/db", async (DatabaseHandler handler) => await handler.HandleAsync());
 
 
