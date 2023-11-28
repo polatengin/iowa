@@ -81,6 +81,23 @@ app.MapPost("/login", async (LoginHandler handler) => await handler.HandleAsync(
 
 app.MapGet("/db", async (DatabaseHandler handler) => await handler.HandleAsync());
 
+app.MapGet("/weather", async (HttpContext httpContext) =>
+{
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new
+        {
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Temperature = Random.Shared.Next(-20, 55),
+            Summary = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" }[Random.Shared.Next(9)]
+        })
+        .ToArray();
+    await Task.Delay(10);
+    return Results.Ok(forecast);
+})
+.WithName("GetWeatherForecast")
+.WithDescription("Gets the weather forecast")
+.WithOpenApi()
+.RequireAuthorization("RequireITAdmin");
 
 app.Run();
 
