@@ -59,6 +59,8 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddScoped<HttpContextAccessor, HttpContextAccessor>();
 
+builder.Services.AddScoped<DatabaseHandler>();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -69,6 +71,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseAuthorization();
+app.MapGet("/db", async (DatabaseHandler handler) => await handler.HandleAsync());
+
 
 app.Run();
 
